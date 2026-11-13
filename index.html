@@ -121,6 +121,13 @@ svg { user-select: none; }
 .btn--full { width: 100%; }
 .btn--portal { min-height: 44px; padding: 0 16px; border-radius: 14px; background: #fff; border-color: var(--line); color: var(--navy); font-size: 14px; box-shadow: var(--shadow-sm); }
 .btn--portal:hover { background: var(--teal-soft); border-color: #BFDCD3; }
+.btn--account { min-height: 44px; padding: 0 14px; border-radius: 14px; background: var(--teal-soft); border-color: #BFDCD3; color: var(--teal-dark); font-size: 13px; font-weight: 900; box-shadow: var(--shadow-sm); }
+.btn--account:hover { background: #DCEFE8; border-color: #A9D2C5; }
+.btn--account .icon { width: 17px; height: 17px; }
+.btn--account .account-initial { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--teal-dark); color: #fff; font-size: 12px; font-weight: 900; }
+.btn--account.is-logged { background: var(--navy); border-color: var(--navy); color: #fff; }
+.btn--account.is-logged:hover { background: var(--navy-deep); border-color: var(--navy-deep); }
+.btn--account.is-logged .account-initial { background: var(--orange); color: var(--navy); }
 .text-btn {
   display: inline-flex; align-items: center; gap: 7px; padding: 8px 4px;
   background: none; border: 0; color: var(--teal-dark); font-weight: 800; font-size: 14px;
@@ -893,6 +900,55 @@ svg { user-select: none; }
 .gate-back { background: none; border: 0; font-size: 11px; color: var(--teal-dark); font-weight: 800; margin-top: 13px; padding: 5px; }
 .gate-back:hover { text-decoration: underline; }
 
+/* ===== Account auth ===== */
+.auth-card { max-height: calc(100vh - 40px); overflow-y: auto; }
+.auth-tabs { display: flex; gap: 4px; margin: 16px 0 2px; padding: 4px; border-radius: 13px; background: var(--mist); }
+.auth-tabs button {
+  flex: 1; min-height: 44px; border: 0; border-radius: 10px; background: transparent;
+  color: var(--muted); font-family: inherit; font-size: 12.5px; font-weight: 900; cursor: pointer;
+  transition: background .2s, color .2s, box-shadow .2s;
+}
+.auth-tabs button[aria-pressed="true"] { background: #fff; color: var(--navy); box-shadow: var(--shadow-sm); }
+.auth-tabs button:focus-visible { outline: 3px solid rgba(46,139,120,.25); outline-offset: 1px; }
+#auth-form { display: grid; gap: 9px; margin-top: 13px; text-align: right; }
+.auth-field { display: grid; gap: 4px; }
+.auth-field label { font-size: 11.5px; color: var(--muted); font-weight: 800; }
+.auth-field input, .auth-field select {
+  width: 100%; height: 46px; border: 1.5px solid var(--line); border-radius: 12px;
+  background: #fff; padding: 0 12px; color: var(--navy); font-family: inherit; font-size: 14px; font-weight: 700;
+}
+.auth-field input::placeholder { color: var(--muted); font-weight: 600; }
+.auth-field input:focus, .auth-field select:focus { outline: 3px solid rgba(46,139,120,.2); border-color: var(--teal); }
+.auth-field input[dir="ltr"] { text-align: left; }
+.auth-remember {
+  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 2px;
+  color: var(--muted); font-size: 12px; font-weight: 700; cursor: pointer;
+}
+.auth-remember input { width: 18px; height: 18px; margin: 0; accent-color: var(--teal-dark); flex-shrink: 0; }
+.auth-remember input:focus-visible { outline: 3px solid rgba(46,139,120,.25); outline-offset: 2px; }
+#auth-form .gate-error { min-height: 16px; margin: 0; }
+.auth-offline { padding: 9px 12px; border-radius: 11px; background: #FFF4E5; color: #7A4E18; font-size: 11.5px; font-weight: 700; line-height: 1.6; text-align: center; }
+.auth-offline bdi { font-weight: 900; }
+.auth-account { display: grid; justify-items: center; gap: 3px; margin-top: 16px; }
+.auth-avatar { display: grid; place-items: center; width: 62px; height: 62px; margin-bottom: 5px; border-radius: 50%; background: var(--teal-dark); color: #fff; font-size: 24px; font-weight: 900; }
+.auth-account strong { font-size: 18px; color: var(--navy); }
+.auth-account > span:not(.auth-avatar):not(.auth-role-badge) { font-size: 12px; color: var(--muted); }
+.auth-role-badge { margin-top: 4px; padding: 3px 10px; border-radius: 99px; background: var(--orange-soft); color: #A95B1D; font-size: 11px; font-weight: 900; }
+.auth-account .btn { margin-top: 14px; }
+.auth-data {
+  width: 100%; margin-top: 14px; padding: 13px; border: 1px solid var(--line);
+  border-radius: 14px; background: var(--mist); text-align: right;
+}
+.auth-data-head { display: flex; align-items: center; gap: 6px; }
+.auth-data-head .icon { width: 17px; height: 17px; color: var(--teal-dark); }
+.auth-data-head strong { font-size: 13px; color: var(--navy); }
+.auth-data p { margin: 5px 0 0; font-size: 11px; line-height: 1.7; color: var(--muted); }
+.auth-data-status { min-height: 17px; font-weight: 800; color: var(--teal-dark) !important; }
+.auth-data-status.is-error { color: #B4552E !important; }
+.auth-data-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 10px; }
+.auth-data-actions .btn { margin-top: 0; min-height: 44px; padding: 0 10px; border-radius: 12px; font-size: 11.5px; }
+.auth-data-actions .btn .icon { width: 15px; height: 15px; }
+
 /* ===== Toast & confetti ===== */
 .toast-region { position: fixed; z-index: 400; bottom: 25px; right: 50%; transform: translateX(50%); display: flex; justify-content: center; pointer-events: none; width: min(420px, calc(100% - 32px)); }
 .toast { display: flex; align-items: center; gap: 9px; background: var(--navy); color: #fff; border-radius: 14px; padding: 11px 16px; box-shadow: var(--shadow-lg); font-size: 12px; font-weight: 700; animation: toastIn .28s var(--ease) both; }
@@ -973,6 +1029,8 @@ svg { user-select: none; }
   .header-actions { gap: 6px; }
   .btn--portal span { display: none; }
   .btn--portal { width: 44px; padding: 0; }
+  .btn--account span[data-auth-label] { display: none; }
+  .btn--account { width: 44px; padding: 0; }
   .star-counter { padding: 0 9px; height: 42px; font-size: 12px; }
   .star-counter .icon { width: 16px; height: 16px; }
   .icon-btn { width: 44px; height: 44px; border-radius: 13px; }
@@ -2491,6 +2549,11 @@ h1[tabindex="-1"]:focus-visible {
         <button class="icon-btn js-sound-toggle" type="button" aria-label="إيقاف أصوات بَراح" aria-pressed="true">
           <svg class="icon"><use href="#i-volume"></use></svg>
         </button>
+        <button class="btn btn--account" type="button" data-auth-open aria-label="تسجيل الدخول أو إنشاء حساب">
+          <span class="account-initial" data-auth-initial hidden></span>
+          <svg class="icon" data-auth-icon><use href="#i-user-check"></use></svg>
+          <span data-auth-label>دخول</span>
+        </button>
         <button class="btn btn--portal" type="button" data-parent-gate>
           <svg class="icon"><use href="#i-lock"></use></svg>
           <span>بوابة الكبار</span>
@@ -3194,6 +3257,69 @@ h1[tabindex="-1"]:focus-visible {
     </div>
   </div>
 
+  <div class="modal-backdrop" id="auth-modal" hidden>
+    <div class="modal-card auth-card" role="dialog" aria-modal="true" aria-labelledby="auth-title" aria-describedby="auth-desc">
+      <button class="modal-close" id="auth-close" type="button" aria-label="إغلاق نافذة الحساب"><svg class="icon"><use href="#i-x"></use></svg></button>
+      <div class="gate-icon" aria-hidden="true"><svg class="icon"><use href="#i-user-check"></use></svg></div>
+      <span class="section-kicker">حساب الكبار</span>
+      <h2 id="auth-title">تسجيل الدخول</h2>
+      <p id="auth-desc">حساب لولي الأمر أو المعلم لحفظ تقدم الطفل على الخادم. مساحة الطفل تفضل بدون تسجيل.</p>
+      <div class="auth-tabs" role="group" aria-label="اختيار نوع الدخول">
+        <button type="button" data-auth-tab="login" aria-pressed="true">دخول</button>
+        <button type="button" data-auth-tab="signup" aria-pressed="false">حساب جديد</button>
+      </div>
+      <form id="auth-form" novalidate>
+        <div class="auth-field" data-auth-field="name" hidden>
+          <label for="auth-name">الاسم</label>
+          <input id="auth-name" name="name" type="text" autocomplete="name" maxlength="60" placeholder="مثلًا: سارة أحمد">
+        </div>
+        <div class="auth-field">
+          <label for="auth-identifier">البريد الإلكتروني أو رقم الموبايل</label>
+          <input id="auth-identifier" name="identifier" type="text" autocomplete="username" maxlength="120" placeholder="name@example.com أو 01xxxxxxxxx" dir="ltr">
+        </div>
+        <div class="auth-field">
+          <label for="auth-password">كلمة المرور</label>
+          <input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" placeholder="٨ أحرف على الأقل">
+        </div>
+        <label class="auth-remember" data-auth-field="remember">
+          <input id="auth-remember" name="remember" type="checkbox" checked>
+          <span>تذكرني على هذا الجهاز ٣٠ يوم</span>
+        </label>
+        <div class="auth-field" data-auth-field="role" hidden>
+          <label for="auth-role">نوع الحساب</label>
+          <select id="auth-role" name="role">
+            <option value="parent">ولي أمر</option>
+            <option value="teacher">معلم/ة</option>
+          </select>
+        </div>
+        <p class="gate-error" id="auth-error" role="alert"></p>
+        <p class="auth-offline" id="auth-offline" hidden>الحسابات تحتاج تشغيل الخادم: <bdi dir="ltr">node server.mjs</bdi> ثم فتح الموقع من الرابط المحلي.</p>
+        <button class="btn btn--primary btn--full" type="submit" id="auth-submit">دخول</button>
+      </form>
+      <div class="auth-account" id="auth-account" hidden>
+        <span class="auth-avatar" id="auth-avatar" aria-hidden="true"></span>
+        <strong id="auth-account-name"></strong>
+        <span id="auth-account-email" dir="ltr"></span>
+        <span class="auth-role-badge" id="auth-account-role"></span>
+        <div class="auth-data">
+          <div class="auth-data-head">
+            <svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg>
+            <strong>حفظ بيانات الطفل</strong>
+          </div>
+          <p>احفظ تقدم الطفل (النجوم، القصص، المشاعر، والخطط) على حسابك، واستعيده على أي جهاز.</p>
+          <p class="auth-data-status" id="auth-data-status" role="status">جارٍ التحقق من النسخة المحفوظة…</p>
+          <div class="auth-data-actions">
+            <button class="btn btn--mint" type="button" id="auth-save-data"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> حفظ نسخة</button>
+            <button class="btn btn--ghost" type="button" id="auth-restore-data"><svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg> استعادة النسخة</button>
+          </div>
+        </div>
+        <button class="btn btn--primary btn--full" type="button" id="auth-logout">تسجيل الخروج</button>
+      </div>
+      <p class="gate-note"><svg class="icon"><use href="#i-shield-check"></use></svg> كلمات المرور بتتخزن مشفرة على الخادم، والجلسة ١٢ ساعة أو ٣٠ يوم مع «تذكرني».</p>
+      <button class="gate-back" id="auth-to-pin" type="button">دخول سريع برقم بوابة الكبار؟</button>
+    </div>
+  </div>
+
   <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
   <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
 
@@ -3531,11 +3657,16 @@ h1[tabindex="-1"]:focus-visible {
   }
 
   function trapGateFocus(event) {
-    if (event.key === 'Escape') { closeGate(); return; }
-    if (event.key !== 'Tab') return;
     const gate = $('#parent-gate');
-    if (!gate || gate.hidden) return;
-    const focusable = $$('button, input, [href], [tabindex]:not([tabindex="-1"])', gate)
+    const auth = $('#auth-modal');
+    if (event.key === 'Escape') {
+      if (auth && !auth.hidden) { closeAuth(); return; }
+      if (gate && !gate.hidden) { closeGate(); return; }
+    }
+    if (event.key !== 'Tab') return;
+    const openModal = auth && !auth.hidden ? auth : (gate && !gate.hidden ? gate : null);
+    if (!openModal) return;
+    const focusable = $$('button, input, select, [href], [tabindex]:not([tabindex="-1"])', openModal)
       .filter((element) => !element.disabled && element.offsetParent !== null);
     if (!focusable.length) return;
     const first = focusable[0];
@@ -3548,6 +3679,423 @@ h1[tabindex="-1"]:focus-visible {
       first.focus();
     }
   }
+
+  /* ---------- Parent / teacher accounts ---------- */
+  const API_ROOT = '/api';
+  let authUser = null;
+  let authMode = 'login';
+  let authOnline = location.protocol !== 'file:';
+  let authBusy = false;
+  let authLastFocus = null;
+
+  async function apiRequest(path, options = {}) {
+    const response = await fetch(`${API_ROOT}${path}`, {
+      credentials: 'same-origin',
+      ...options,
+      headers: {
+        ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+        ...(options.headers || {})
+      }
+    });
+    let data = null;
+    try { data = await response.json(); } catch { /* empty response */ }
+    return { response, data };
+  }
+
+  async function authRequest(path, options = {}) {
+    return apiRequest(`/auth${path}`, options);
+  }
+
+  function authFirstName() {
+    return authUser ? (authUser.name.trim().split(/\s+/)[0] || 'حسابي') : '';
+  }
+
+  function updateAuthUI() {
+    const button = $('[data-auth-open]');
+    const label = $('[data-auth-label]');
+    const icon = $('[data-auth-icon]');
+    const initial = $('[data-auth-initial]');
+    if (button && label && icon && initial) {
+      if (authUser) {
+        const first = authFirstName();
+        label.textContent = first;
+        icon.hidden = true;
+        initial.hidden = false;
+        initial.textContent = first.charAt(0);
+        button.classList.add('is-logged');
+        button.setAttribute('aria-label', `حساب ${authUser.name}`);
+      } else {
+        label.textContent = 'دخول';
+        icon.hidden = false;
+        initial.hidden = true;
+        initial.textContent = '';
+        button.classList.remove('is-logged');
+        button.setAttribute('aria-label', 'تسجيل الدخول أو إنشاء حساب');
+      }
+    }
+    const dashTitle = $('#dashboard-title');
+    if (dashTitle) {
+      dashTitle.textContent = authUser ? `صباح الخير، أ. ${authFirstName()}` : 'صباح الخير، أ. سارة';
+    }
+  }
+
+  function setAuthMode(mode) {
+    authMode = mode === 'signup' ? 'signup' : 'login';
+    $$('[data-auth-tab]').forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.authTab === authMode));
+    });
+    $$('[data-auth-field]').forEach((field) => {
+      const signupOnly = field.dataset.authField === 'name' || field.dataset.authField === 'role';
+      field.hidden = signupOnly ? authMode !== 'signup' : false;
+    });
+    const submit = $('#auth-submit');
+    if (submit) submit.textContent = authMode === 'signup' ? 'إنشاء الحساب' : 'دخول';
+    const password = $('#auth-password');
+    if (password) password.setAttribute('autocomplete', authMode === 'signup' ? 'new-password' : 'current-password');
+    const error = $('#auth-error');
+    if (error) error.textContent = '';
+  }
+
+  function renderAuthState() {
+    const title = $('#auth-title');
+    const desc = $('#auth-desc');
+    const tabs = $('.auth-tabs');
+    const form = $('#auth-form');
+    const account = $('#auth-account');
+    const toPin = $('#auth-to-pin');
+    const offline = $('#auth-offline');
+    if (offline) offline.hidden = authOnline;
+    if (authUser) {
+      if (title) title.textContent = 'حسابك في بَراح';
+      if (desc) desc.textContent = 'إنت مسجّل الدخول. تقدر تدخل لوحة الأهل من غير PIN، وتحفظ تقدم الطفل على حسابك.';
+      if (tabs) tabs.hidden = true;
+      if (form) form.hidden = true;
+      if (account) account.hidden = false;
+      if (toPin) toPin.hidden = true;
+      const avatar = $('#auth-avatar');
+      const name = $('#auth-account-name');
+      const email = $('#auth-account-email');
+      const role = $('#auth-account-role');
+      if (avatar) avatar.textContent = authFirstName().charAt(0);
+      if (name) name.textContent = authUser.name;
+      if (email) email.textContent = authUser.email || authUser.phone || '';
+      if (role) role.textContent = authUser.role === 'teacher' ? 'معلم/ة' : 'ولي أمر';
+      resetAuthRestore();
+      setAuthDataStatus('جارٍ التحقق من النسخة المحفوظة…');
+      refreshAuthDataStatus();
+      return;
+    }
+    if (title) title.textContent = 'تسجيل الدخول';
+    if (desc) desc.textContent = 'حساب لولي الأمر أو المعلم لحفظ تقدم الطفل على الخادم. مساحة الطفل تفضل بدون تسجيل.';
+    if (tabs) tabs.hidden = false;
+    if (form) form.hidden = false;
+    if (account) account.hidden = true;
+    if (toPin) toPin.hidden = false;
+    setAuthMode(authMode);
+  }
+
+  function openAuth() {
+    const modal = $('#auth-modal');
+    if (!modal) return;
+    authLastFocus = document.activeElement;
+    if (!authUser) authMode = 'login';
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    renderAuthState();
+    window.setTimeout(() => {
+      const target = authUser ? $('#auth-logout') : $('#auth-identifier');
+      if (target) target.focus();
+    }, 80);
+  }
+
+  function closeAuth(options = {}) {
+    const modal = $('#auth-modal');
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    resetAuthRestore();
+    if (options.restoreFocus !== false && authLastFocus && typeof authLastFocus.focus === 'function') {
+      authLastFocus.focus();
+    }
+  }
+
+  async function initAuth() {
+    if (location.protocol === 'file:') {
+      authOnline = false;
+      updateAuthUI();
+      return;
+    }
+    try {
+      const { response, data } = await authRequest('/me');
+      if (response.ok && data && data.user) {
+        authUser = data.user;
+        authOnline = true;
+        state.parentUnlocked = true;
+        if (pageFromHash() === 'dashboard') {
+          const gate = $('#parent-gate');
+          if (gate && !gate.hidden) { closeGate(); navigate('dashboard', { updateHash: false }); }
+        }
+      } else if (response.ok) {
+        authUser = null;
+        authOnline = true;
+      } else {
+        authOnline = false;
+      }
+    } catch {
+      authOnline = false;
+    }
+    updateAuthUI();
+  }
+
+  function shakeAuthCard() {
+    const card = $('.auth-card');
+    if (!card) return;
+    card.classList.remove('shake');
+    void card.offsetWidth;
+    card.classList.add('shake');
+  }
+
+  async function handleAuthSubmit(event) {
+    event.preventDefault();
+    if (authBusy) return;
+    const error = $('#auth-error');
+    const submit = $('#auth-submit');
+    const nameInput = $('#auth-name');
+    const identifierInput = $('#auth-identifier');
+    const passwordInput = $('#auth-password');
+    const roleInput = $('#auth-role');
+    const rememberInput = $('#auth-remember');
+    const name = nameInput ? nameInput.value.trim() : '';
+    const identifier = identifierInput ? identifierInput.value.trim() : '';
+    const password = passwordInput ? passwordInput.value : '';
+    const role = roleInput ? roleInput.value : 'parent';
+    const remember = rememberInput ? rememberInput.checked : true;
+
+    if (!authOnline) {
+      if (error) error.textContent = 'الحسابات تحتاج تشغيل الخادم أولًا: node server.mjs';
+      playSoftError();
+      return;
+    }
+    if (authMode === 'signup' && name.length < 2) {
+      if (error) error.textContent = 'اكتب اسمك (حرفين على الأقل).';
+      if (nameInput) nameInput.focus();
+      playSoftError();
+      return;
+    }
+    const isEmail = identifier.includes('@');
+    const phoneDigits = normalizeDigits(identifier).replace(/\D/g, '');
+    const validIdentifier = isEmail
+      ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier)
+      : phoneDigits.length >= 10 && phoneDigits.length <= 15;
+    if (!validIdentifier) {
+      if (error) error.textContent = 'اكتب بريدًا إلكترونيًا صحيحًا أو رقم موبايل صحيحًا.';
+      if (identifierInput) identifierInput.focus();
+      playSoftError();
+      return;
+    }
+    if (password.length < 8) {
+      if (error) error.textContent = 'كلمة المرور لازم تكون ٨ أحرف على الأقل.';
+      if (passwordInput) passwordInput.focus();
+      playSoftError();
+      return;
+    }
+
+    authBusy = true;
+    if (submit) { submit.disabled = true; submit.textContent = 'لحظة…'; }
+    if (error) error.textContent = '';
+    try {
+      const endpoint = authMode === 'signup' ? '/register' : '/login';
+      const payload = authMode === 'signup'
+        ? { name, identifier, password, role, remember }
+        : { identifier, password, remember };
+      const { response, data } = await authRequest(endpoint, { method: 'POST', body: JSON.stringify(payload) });
+      if (!response.ok) {
+        if (error) error.textContent = (data && data.error) || 'حصلت مشكلة. جرّب تاني.';
+        playSoftError();
+        shakeAuthCard();
+        return;
+      }
+      authUser = data.user;
+      authOnline = true;
+      state.parentUnlocked = true;
+      if (passwordInput) passwordInput.value = '';
+      updateAuthUI();
+      closeAuth();
+      playSuccess();
+      showToast(`أهلًا ${authFirstName()}! الحساب جاهز، وتقدر تدخل لوحة الأهل من غير PIN.`);
+    } catch {
+      authOnline = false;
+      if (error) error.textContent = 'مش قادر أوصل للخادم. شغّل node server.mjs وجرّب تاني.';
+      renderAuthState();
+      playSoftError();
+    } finally {
+      authBusy = false;
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = authMode === 'signup' ? 'إنشاء الحساب' : 'دخول';
+      }
+    }
+  }
+
+  async function handleAuthLogout() {
+    try {
+      await authRequest('/logout', { method: 'POST' });
+    } catch {
+      /* the local session still ends below */
+    }
+    authUser = null;
+    state.parentUnlocked = false;
+    const password = $('#auth-password');
+    if (password) password.value = '';
+    updateAuthUI();
+    closeAuth();
+    if (pageFromHash() === 'dashboard') navigate('home');
+    showToast('تم تسجيل الخروج.', 'info');
+  }
+
+  /* ---------- Account data backup ---------- */
+  const RESTORE_LABEL = '<svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg> استعادة النسخة';
+  let authDataSavedAt = null;
+  let authRestoreArmed = false;
+  let authRestoreTimer = null;
+
+  function formatSavedAt(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return new Intl.DateTimeFormat('ar-EG', { dateStyle: 'medium', timeStyle: 'short' }).format(date);
+  }
+
+  function setAuthDataStatus(text, isError = false) {
+    const status = $('#auth-data-status');
+    if (!status) return;
+    status.textContent = text;
+    status.classList.toggle('is-error', isError);
+  }
+
+  function resetAuthRestore() {
+    authRestoreArmed = false;
+    clearTimeout(authRestoreTimer);
+    const button = $('#auth-restore-data');
+    if (button) {
+      button.disabled = false;
+      button.innerHTML = RESTORE_LABEL;
+    }
+  }
+
+  function collectProgressData() {
+    return {
+      sound: state.sound,
+      stars: state.stars,
+      checkins: state.checkins,
+      storiesDone: state.storiesDone,
+      plans: state.plans,
+      safetyDone: state.safetyDone
+    };
+  }
+
+  function applyProgressData(data) {
+    if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
+    state.sound = data.sound !== false;
+    state.stars = Number.isFinite(data.stars) ? data.stars : 3;
+    state.checkins = Array.isArray(data.checkins) ? data.checkins : [];
+    state.storiesDone = Array.isArray(data.storiesDone) ? data.storiesDone : [];
+    state.plans = Array.isArray(data.plans) ? data.plans : [];
+    state.safetyDone = Boolean(data.safetyDone);
+    saveProgress();
+    return true;
+  }
+
+  async function refreshAuthDataStatus() {
+    if (!authUser || !authOnline) return;
+    const current = authUser;
+    setAuthDataStatus('جارٍ التحقق من النسخة المحفوظة…');
+    try {
+      const { response, data } = await apiRequest('/data');
+      if (authUser !== current) return;
+      if (!response.ok) {
+        setAuthDataStatus('مش قادر أقرأ النسخة المحفوظة دلوقتي.', true);
+        return;
+      }
+      authDataSavedAt = data && data.savedAt ? data.savedAt : null;
+      if (data && data.data) {
+        const storiesCount = Array.isArray(data.data.storiesDone) ? data.data.storiesDone.length : 0;
+        const checkinsCount = Array.isArray(data.data.checkins) ? data.data.checkins.length : 0;
+        setAuthDataStatus(`آخر حفظ: ${formatSavedAt(authDataSavedAt)} · ${toArabic(storiesCount)} قصص · ${toArabic(checkinsCount)} تسجيل مشاعر`);
+      } else {
+        setAuthDataStatus('مفيش نسخة محفوظة على الحساب لسه. اضغط «حفظ نسخة».');
+      }
+    } catch {
+      if (authUser === current) setAuthDataStatus('مش قادر أوصل للخادم دلوقتي.', true);
+    }
+  }
+
+  async function handleAuthSaveData() {
+    if (!authUser || !authOnline || authBusy) return;
+    resetAuthRestore();
+    const button = $('#auth-save-data');
+    if (button) button.disabled = true;
+    setAuthDataStatus('بتحفظ النسخة…');
+    try {
+      const { response, data } = await apiRequest('/data', {
+        method: 'PUT',
+        body: JSON.stringify({ data: collectProgressData() })
+      });
+      if (!response.ok) {
+        setAuthDataStatus((data && data.error) || 'مش قادر أحفظ النسخة دلوقتي.', true);
+        playSoftError();
+        return;
+      }
+      authDataSavedAt = data && data.savedAt ? data.savedAt : new Date().toISOString();
+      const storiesCount = state.storiesDone.length;
+      const checkinsCount = state.checkins.length;
+      setAuthDataStatus(`اتحفظت نسخة ${formatSavedAt(authDataSavedAt)} · ${toArabic(storiesCount)} قصص · ${toArabic(checkinsCount)} تسجيل مشاعر`);
+      playSuccess();
+      showToast('تم حفظ تقدم الطفل على الحساب.');
+    } catch {
+      setAuthDataStatus('مش قادر أوصل للخادم. شغّل node server.mjs وجرّب تاني.', true);
+      playSoftError();
+    } finally {
+      if (button) button.disabled = false;
+    }
+  }
+
+  async function handleAuthRestoreData() {
+    if (!authUser || !authOnline) return;
+    const button = $('#auth-restore-data');
+    if (!authRestoreArmed) {
+      authRestoreArmed = true;
+      if (button) button.textContent = 'اضغط تاني للتأكيد';
+      clearTimeout(authRestoreTimer);
+      authRestoreTimer = window.setTimeout(resetAuthRestore, 4000);
+      return;
+    }
+    resetAuthRestore();
+    if (button) button.disabled = true;
+    setAuthDataStatus('بترجع النسخة المحفوظة…');
+    try {
+      const { response, data } = await apiRequest('/data');
+      if (!response.ok || !data || !data.data) {
+        setAuthDataStatus((data && data.error) || 'مفيش نسخة محفوظة على الحساب.', true);
+        playSoftError();
+        return;
+      }
+      if (!applyProgressData(data.data)) {
+        setAuthDataStatus('النسخة المحفوظة غير صالحة.', true);
+        playSoftError();
+        return;
+      }
+      playSuccess();
+      setAuthDataStatus('تم الاستعادة. الصفحة بتتحدث…');
+      showToast('تم استعادة تقدم الطفل على هذا الجهاز.');
+      window.setTimeout(() => location.reload(), 900);
+    } catch {
+      setAuthDataStatus('مش قادر أوصل للخادم. شغّل node server.mjs وجرّب تاني.', true);
+      playSoftError();
+    } finally {
+      if (button) button.disabled = false;
+    }
+  }
+
   /* ---------- Feelings explorer ---------- */
   function setJourneyStep(step) {
     $$('.journey-step').forEach((element) => {
@@ -4895,6 +5443,28 @@ h1[tabindex="-1"]:focus-visible {
     document.addEventListener('click', (event) => {
       const target = event.target;
 
+      if (target.closest('[data-auth-open]')) {
+        event.preventDefault();
+        playClick();
+        openAuth();
+        return;
+      }
+
+      if (target.closest('#auth-close')) { closeAuth(); return; }
+      const authTab = target.closest('[data-auth-tab]');
+      if (authTab) {
+        playClick();
+        setAuthMode(authTab.dataset.authTab);
+        return;
+      }
+      if (target.closest('#auth-to-pin')) {
+        closeAuth({ restoreFocus: false });
+        openGate();
+        return;
+      }
+      if (target.closest('#auth-save-data')) { handleAuthSaveData(); return; }
+      if (target.closest('#auth-restore-data')) { handleAuthRestoreData(); return; }
+
       const gateButton = target.closest('[data-parent-gate]');
       if (gateButton) {
         event.preventDefault();
@@ -5058,6 +5628,8 @@ h1[tabindex="-1"]:focus-visible {
     document.addEventListener('click', (event) => {
       const gate = $('#parent-gate');
       if (gate && !gate.hidden && event.target === gate) closeGate();
+      const auth = $('#auth-modal');
+      if (auth && !auth.hidden && event.target === auth) closeAuth();
     });
 
     $$('.js-sound-toggle').forEach((button) => {
@@ -5072,6 +5644,10 @@ h1[tabindex="-1"]:focus-visible {
 
     const gateForm = $('#gate-form');
     if (gateForm) gateForm.addEventListener('submit', handleGateSubmit);
+    const authForm = $('#auth-form');
+    if (authForm) authForm.addEventListener('submit', handleAuthSubmit);
+    const authLogout = $('#auth-logout');
+    if (authLogout) authLogout.addEventListener('click', handleAuthLogout);
     document.addEventListener('keydown', trapGateFocus);
     document.addEventListener('pointerdown', spawnClickSparks);
 
@@ -5122,6 +5698,7 @@ h1[tabindex="-1"]:focus-visible {
     renderStory(0);
     buildWaveform();
     setupEvents();
+    initAuth();
 
     let requested = pageFromHash();
     const knownPages = ['home', 'feelings', 'stories', 'help', 'digital', 'dashboard'];
